@@ -10,13 +10,30 @@ var _benches = {};
 var BenchStore = new Store(AppDispatcher);
 
 BenchStore.all = function () {
-  return Object.assign({}, _benches);
+  // return Object.assign({}, _benches); //from Phase 2
+  // change to array for the index component?
+  var benches = [];
+
+  for (var id in _benches) {
+    benches.push(_benches[id]);
+  }
+
+  return benches;
+};
+
+var resetBenches = function (benches) {
+  _benches = {};
+
+  benches.forEach(function(bench) {
+    _benches[bench.id] = bench;
+  });
 };
 
 BenchStore.__onDispatch = function (payload) {
   switch (payload.actionType) {
     case BenchConstants.BENCHES_RECEIVED:
-      _benches = payload.benches;
+      resetBenches(payload.benches);
+      BenchStore.__emitChange();
       break;
     default:
 

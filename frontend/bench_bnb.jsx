@@ -3,7 +3,8 @@ var ReactDOM = require('react-dom');
 
 var ApiUtil = require('./util/api_util.js');
 var BenchStore = require('./stores/bench.js');
+var Index = require('./components/benches/index.jsx');
 
 document.addEventListener("DOMContentLoaded", function() {
-  ReactDOM.render(<div>This works</div>, document.getElementById('root'));
+  ReactDOM.render(<Index />, document.getElementById('root'));
 });
