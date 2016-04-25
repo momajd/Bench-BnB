@@ -9,7 +9,10 @@ var Index = React.createClass({
 
   componentDidMount: function () {
     this.listener = BenchStore.addListener(this._onChange);
-    ClientActions.fetchBenches(); //STARTS ENTIRE PROCESS; SEE DIAGRAM
+
+    // Moved to map (it doesn't make sense to fetch any markers from the API
+    // until we know where the map is)
+    // ClientActions.fetchBenches(); //STARTS ENTIRE PROCESS; SEE DIAGRAM
   },
 
   _onChange: function () {
