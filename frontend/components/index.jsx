@@ -1,8 +1,8 @@
 var React = require('react');
-var BenchStore = require('../../stores/bench.js');
-var ClientActions = require('../../actions/client_actions.js')
+var BenchStore = require('../stores/bench.js');
+var ClientActions = require('../actions/client_actions.js');
 
-module.exports = React.createClass({
+var Index = React.createClass({
   getInitialState: function () {
     return {benches: BenchStore.all()};
   },
@@ -28,3 +28,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+module.exports = Index;
