@@ -11,7 +11,20 @@ var Map = React.createClass({
       };
       this.map = new google.maps.Map(mapDOMNode, mapOptions);
 
-      this.map.addListener("idle", ClientActions.fetchBenches);
+      this.map.addListener("idle", function() {
+        // Need to get the bounds in the format that the backend is expecting
+        var southWestLat = this.getBounds().getSouthWest().lat();
+        var southWestLng = this.getBounds().getSouthWest().lng();
+        var northEastLat = this.getBounds().getNorthEast().lat();
+        var northEastLng = this.getBounds().getNorthEast().lng();
+        var formattedBounds = {
+          northEast: {lat: northEastLat, lng: northEastLng},
+          southWest: {lat: southWestLat, lng: southWestLng}
+        };
+
+        ClientActions.fetchBenches(formattedBounds);
+      });
+
       // When the event occurs, create markers for every bench in the array
       this.listener = BenchStore.addListener(this._onChange);
     },
