@@ -21,10 +21,9 @@ var Map = React.createClass({
           northEast: {lat: northEastLat, lng: northEastLng},
           southWest: {lat: southWestLat, lng: southWestLng}
         };
-
         ClientActions.fetchBenches(formattedBounds);
       });
-
+      // TODO: Remove markers when they are out of view
       // When the event occurs, create markers for every bench in the array
       this.listener = BenchStore.addListener(this._onChange);
     },
